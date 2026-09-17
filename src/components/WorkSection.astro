@@ -1,0 +1,46 @@
+---
+// Selected work — one entry per project. Swap the placeholder data
+// fields in `projects` with your real project details.
+import WorkCard from "./WorkCard.astro";
+
+const projects = [
+  {
+    title: "Project One",
+    description:
+      "Landing page built with vanilla HTML/CSS/JS. Fully responsive, zero frameworks.",
+    tags: ["HTML", "CSS", "JS"],
+  },
+  {
+    title: "Project Two",
+    description:
+      "Small React app for tracking habits. State managed with hooks, styled with modules.",
+    tags: ["React", "CSS"],
+  },
+  {
+    title: "Project Three",
+    description:
+      "API quiz app — fetches trivia questions, keeps score, handles loading & error states.",
+    tags: ["JS", "API"],
+  },
+];
+---
+
+<section id="work" class="section section--work">
+  <div class="section__header">
+    <h2 class="section__title">Selected work</h2>
+    <span class="section__aside">[ 0{projects.length} — projects ]</span>
+  </div>
+
+  {projects.map((project, i) => (
+    <WorkCard
+      index={i}
+      title={project.title}
+      description={project.description}
+      tags={project.tags}
+    />
+  ))}
+
+  <div class="section__footer">
+    <span class="noise">More projects on my Github →</span>
+  </div>
+</section>

@@ -1,0 +1,26 @@
+---
+// Contact footer. `year` is injected from Layout to avoid a stale copyright.
+interface Props {
+  year: number;
+}
+const { year } = Astro.props;
+---
+
+<footer id="contact" class="contact">
+  <h2 class="contact__title">
+    Let's work
+    <br />
+    together
+  </h2>
+  <a class="contact__email" href="mailto:darilburgos16@gmail.com">
+    darilburgos@gmail.com ↗
+  </a>
+  <div class="contact__social">
+    <a href="https://github.com/mattdivs">Github</a>
+    <a href="#">LinkedIn</a>
+    <a href="#">Twitter/X</a>
+  </div>
+  <p class="contact__copy">
+    © {year} Daril J. Burgos — made with hyperbole &amp; too much coffee
+  </p>
+</footer>

@@ -1,0 +1,49 @@
+---
+// Top hero section. The name glitch effect runs client-side in the
+// bundled script at the bottom.
+import Marquee from "./Marquee.astro";
+---
+
+<header id="top" class="hero">
+  <div class="hero__badge">Junior Web Developer / Est. 2026</div>
+  <h1 class="hero__title">
+    <span>Hello, I'm</span>
+    <span class="hero__name">Daril J. Burgos</span>
+    <span>I build stuff</span>
+    <span>for the web</span>
+  </h1>
+  <p class="hero__desc">
+    Junior web developer focused on clean, functional and honest interfaces. I
+    turn coffee and problems into websites.
+  </p>
+  <div class="hero__actions">
+    <a class="btn btn--primary" href="#work">
+      See my work ↓
+    </a>
+    <a class="btn btn--ghost" href="#contact">
+      Hire me
+    </a>
+  </div>
+  <Marquee />
+</header>
+
+<script>
+  const heroName = document.querySelector(".hero__name");
+  if (heroName) {
+    const glitchChars = ["#", "@", "%", "&", "!"];
+    setInterval(() => {
+      if (Math.random() < 0.25) {
+        const original = heroName.textContent ?? "";
+        const glitched = [...original]
+          .map((ch) =>
+            ch !== " " && Math.random() < 0.3
+              ? glitchChars[Math.floor(Math.random() * glitchChars.length)]
+              : ch,
+          )
+          .join("");
+        heroName.textContent = glitched;
+        setTimeout(() => (heroName.textContent = original), 120);
+      }
+    }, 2200);
+  }
+</script>

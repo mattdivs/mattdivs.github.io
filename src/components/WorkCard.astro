@@ -1,0 +1,44 @@
+---
+// A single project card. Props are set from the projects array in
+// WorkSection.astro, so adding a project is a one-line edit.
+interface Props {
+  index: number;
+  title: string;
+  description: string;
+  tags: string[];
+  liveUrl?: string;
+  repoUrl?: string;
+}
+const {
+  index,
+  title,
+  description,
+  tags,
+  liveUrl = "#",
+  repoUrl = "#",
+} = Astro.props;
+const accent = ["accent", "accent-2", "violet"][index % 3];
+---
+
+<article class="card" data-reveal>
+  <a
+    class={`card__image card__image--${accent}`}
+    href={liveUrl}
+    aria-label={`${title} live site`}
+  >
+    PROJECT_{String(index + 1).padStart(2, "0")}
+  </a>
+  <div class="card__body">
+    <h3 class="card__title">{title}</h3>
+    <p class="card__desc">{description}</p>
+    <div class="card__tags">
+      {tags.map((tag) => (
+        <span class="tag">{tag}</span>
+      ))}
+    </div>
+    <div class="card__links">
+      <a href={liveUrl}>Live ↗</a>
+      <a href={repoUrl}>Github ↗</a>
+    </div>
+  </div>
+</article>

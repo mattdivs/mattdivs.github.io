@@ -1,0 +1,48 @@
+---
+// Sticky top bar. Uses Astro islands-free static HTML plus a tiny
+// click handler in the script at the bottom.
+---
+
+<nav class="nav">
+  <a class="nav__logo" href="#top">
+    Daril J. Burgos<span class="nav__logo-dot">.</span>
+  </a>
+  <ul class="nav__links" id="nav-links">
+    <li>
+      <a href="#work">Work</a>
+    </li>
+    <li>
+      <a href="#about">About</a>
+    </li>
+    <li>
+      <a href="#contact">Contact</a>
+    </li>
+  </ul>
+  <button
+    class="nav__toggle"
+    id="nav-toggle"
+    aria-label="toggle menu"
+    aria-expanded="false"
+  >
+    ☰
+  </button>
+</nav>
+
+<script>
+  const toggle = document.getElementById("nav-toggle");
+  const links = document.getElementById("nav-links");
+
+  toggle?.addEventListener("click", () => {
+    const open = links?.classList.toggle("nav__links--open") ?? false;
+    toggle.textContent = open ? "✕" : "☰";
+    toggle.setAttribute("aria-expanded", String(open));
+  });
+
+  links?.addEventListener("click", (e) => {
+    if (e.target && e.target.tagName === "A") {
+      links.classList.remove("nav__links--open");
+      toggle?.setAttribute("aria-expanded", "false");
+      if (toggle) toggle.textContent = "☰";
+    }
+  });
+</script>

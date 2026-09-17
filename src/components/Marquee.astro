@@ -1,0 +1,13 @@
+---
+// Marquee strip with the tech stack, repeated once for a seamless loop.
+const skills = ["HTML", "CSS", "JavaScript", "React", "Accessibility"];
+const track = [...skills, ...skills];
+---
+
+<div class="hero__marquee" aria-hidden="true">
+  <div class="marquee__track">
+    {track.map((skill) => (
+      <span>{skill}</span>
+    ))}
+  </div>
+</div>
